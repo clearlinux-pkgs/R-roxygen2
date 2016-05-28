@@ -4,14 +4,16 @@
 #
 Name     : R-roxygen2
 Version  : 5.0.1
-Release  : 28
+Release  : 29
 URL      : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Summary  : In-Source Documentation for R
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-roxygen2-lib
+Requires: R-Rcpp
 Requires: R-brew
+BuildRequires : R-Rcpp
 BuildRequires : R-brew
 BuildRequires : R-devtools
 BuildRequires : R-knitr
@@ -40,8 +42,10 @@ lib components for the R-roxygen2 package.
 %install
 rm -rf %{buildroot}
 export LANG=C
-export CFLAGS="$CFLAGS -O3 -flto -ffunction-sections -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -ffunction-sections -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
@@ -49,6 +53,7 @@ mkdir -p %{buildroot}/usr/lib64/R/library
 R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library roxygen2
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
