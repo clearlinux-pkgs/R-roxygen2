@@ -4,16 +4,14 @@
 #
 Name     : R-roxygen2
 Version  : 5.0.1
-Release  : 32
+Release  : 33
 URL      : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Summary  : In-Source Documentation for R
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-roxygen2-lib
-Requires: R-Rcpp
 Requires: R-brew
-BuildRequires : R-Rcpp
 BuildRequires : R-brew
 BuildRequires : R-devtools
 BuildRequires : R-knitr
@@ -38,6 +36,7 @@ lib components for the R-roxygen2 package.
 %setup -q -c -n roxygen2
 
 %build
+export LANG=C
 
 %install
 rm -rf %{buildroot}
