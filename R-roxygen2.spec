@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 5.0.1
-Release  : 31
+Release  : 32
 URL      : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Summary  : In-Source Documentation for R
