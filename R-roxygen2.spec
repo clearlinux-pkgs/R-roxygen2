@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 5.0.1
-Release  : 33
+Release  : 34
 URL      : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/roxygen2_5.0.1.tar.gz
 Summary  : In-Source Documentation for R
@@ -37,9 +37,11 @@ lib components for the R-roxygen2 package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484548127
 
 %install
 rm -rf %{buildroot}
+export SOURCE_DATE_EPOCH=1484548127
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -49,7 +51,7 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
-R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library roxygen2
+R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library roxygen2
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
