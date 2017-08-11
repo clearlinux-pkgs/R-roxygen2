@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 6.0.1
-Release  : 41
+Release  : 42
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.0.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.0.1.tar.gz
 Summary  : In-Line Documentation for R
@@ -23,11 +23,9 @@ BuildRequires : R-markdown
 BuildRequires : clr-R-helpers
 
 %description
-# roxygen2
-[![Build Status](https://travis-ci.org/klutometis/roxygen.png)](https://travis-ci.org/klutometis/roxygen)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/klutometis/roxygen?branch=master&svg=true)](https://ci.appveyor.com/project/klutometis/roxygen)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/roxygen2)](https://cran.r-project.org/package=roxygen2)
-[![Coverage Status](https://img.shields.io/codecov/c/github/klutometis/roxygen/master.svg)](https://codecov.io/github/klutometis/roxygen?branch=master)
+field using specially formatted comments. Writing documentation in-line
+    with code makes it easier to keep your documentation up-to-date as your
+    requirements change. 'Roxygen2' is inspired by the 'Doxygen' system for C++.
 
 %package lib
 Summary: lib components for the R-roxygen2 package.
@@ -45,11 +43,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493919436
+export SOURCE_DATE_EPOCH=1502419950
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1493919436
+export SOURCE_DATE_EPOCH=1502419950
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -59,7 +57,19 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
+
+mkdir -p ~/.R
+mkdir -p ~/.stash
+echo "CFLAGS = $CFLAGS -march=haswell -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library roxygen2
+for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
+echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -ftree-vectorize " >> ~/.R/Makevars
+R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library roxygen2
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
@@ -68,6 +78,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library roxygen2
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 
 
 %files
@@ -120,3 +131,4 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/roxygen2/libs/roxygen2.so
+/usr/lib64/R/library/roxygen2/libs/roxygen2.so.avx2
