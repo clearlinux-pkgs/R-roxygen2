@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 6.1.1
-Release  : 60
+Release  : 61
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Summary  : In-Line Documentation for R
