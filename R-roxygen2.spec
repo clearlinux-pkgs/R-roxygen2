@@ -4,15 +4,17 @@
 #
 Name     : R-roxygen2
 Version  : 6.1.1
-Release  : 66
+Release  : 67
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Summary  : In-Line Documentation for R
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-roxygen2-lib = %{version}-%{release}
+Requires: R-desc
 BuildRequires : R-brew
 BuildRequires : R-commonmark
+BuildRequires : R-desc
 BuildRequires : R-devtools
 BuildRequires : R-knitr
 BuildRequires : R-markdown
@@ -44,10 +46,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552871234
+export SOURCE_DATE_EPOCH=1552882476
 
 %install
-export SOURCE_DATE_EPOCH=1552871234
+export SOURCE_DATE_EPOCH=1552882476
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
