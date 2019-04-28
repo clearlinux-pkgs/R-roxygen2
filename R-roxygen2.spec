@@ -4,16 +4,13 @@
 #
 Name     : R-roxygen2
 Version  : 6.1.1
-Release  : 70
+Release  : 71
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Summary  : In-Line Documentation for R
 Group    : Development/Tools
-License  : GPL-2.0 GPL-2.0+
+License  : GPL-2.0+
 Requires: R-roxygen2-lib = %{version}-%{release}
-Requires: R-Rcpp
-Requires: R-stringi
-Requires: R-xml2
 BuildRequires : R-Rcpp
 BuildRequires : R-brew
 BuildRequires : R-commonmark
@@ -51,10 +48,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552956427
+export SOURCE_DATE_EPOCH=1556461063
 
 %install
-export SOURCE_DATE_EPOCH=1552956427
+export SOURCE_DATE_EPOCH=1556461063
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -90,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  roxygen2 || :
+R CMD check --no-manual --no-examples --no-codoc roxygen2 || :
 
 
 %files
@@ -246,4 +243,3 @@ R CMD check --no-manual --no-examples --no-codoc  roxygen2 || :
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/roxygen2/libs/roxygen2.so
-/usr/lib64/R/library/roxygen2/libs/roxygen2.so.avx2
