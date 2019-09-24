@@ -4,33 +4,44 @@
 #
 Name     : R-roxygen2
 Version  : 6.1.1
-Release  : 73
+Release  : 74
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Summary  : In-Line Documentation for R
 Group    : Development/Tools
 License  : GPL-2.0+
 Requires: R-roxygen2-lib = %{version}-%{release}
+Requires: R-R6
+Requires: R-Rcpp
+Requires: R-brew
+Requires: R-commonmark
+Requires: R-desc
+Requires: R-digest
+Requires: R-pkgload
+Requires: R-purrr
+Requires: R-stringi
+Requires: R-stringr
+Requires: R-xml2
+BuildRequires : R-R6
 BuildRequires : R-Rcpp
 BuildRequires : R-brew
 BuildRequires : R-commonmark
 BuildRequires : R-desc
 BuildRequires : R-devtools
+BuildRequires : R-digest
 BuildRequires : R-knitr
 BuildRequires : R-markdown
 BuildRequires : R-pkgload
 BuildRequires : R-purrr
 BuildRequires : R-stringi
+BuildRequires : R-stringr
 BuildRequires : R-xml2
 BuildRequires : buildreq-R
 
 %description
-# roxygen2 <img src="man/figures/logo.png" align="right" />
-[![Travis build status](https://travis-ci.org/klutometis/roxygen.svg?branch=master)](https://travis-ci.org/klutometis/roxygen)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/roxygen2)](https://cran.r-project.org/package=roxygen2)
-[![Coverage status](https://codecov.io/gh/klutometis/roxygen/branch/master/graph/badge.svg)](https://codecov.io/github/klutometis/roxygen?branch=master)
-> all' hileth', Hephaiste; didou d'areten te kai olbon.*
-> --Homer, 7th century BCE
+field using specially formatted comments. Writing documentation in-line
+    with code makes it easier to keep your documentation up-to-date as your
+    requirements change. 'Roxygen2' is inspired by the 'Doxygen' system for C++.
 
 %package lib
 Summary: lib components for the R-roxygen2 package.
@@ -47,13 +58,13 @@ lib components for the R-roxygen2 package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556461063
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569294488
 
 %install
-export SOURCE_DATE_EPOCH=1556461063
+export SOURCE_DATE_EPOCH=1569294488
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -82,7 +93,7 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
