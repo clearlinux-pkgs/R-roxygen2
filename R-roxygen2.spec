@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 6.1.1
-Release  : 74
+Release  : 75
 URL      : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_6.1.1.tar.gz
 Summary  : In-Line Documentation for R
@@ -37,11 +37,15 @@ BuildRequires : R-stringi
 BuildRequires : R-stringr
 BuildRequires : R-xml2
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
-field using specially formatted comments. Writing documentation in-line
-    with code makes it easier to keep your documentation up-to-date as your
-    requirements change. 'Roxygen2' is inspired by the 'Doxygen' system for C++.
+# roxygen2 <img src="man/figures/logo.png" align="right" />
+[![Travis build status](https://travis-ci.org/klutometis/roxygen.svg?branch=master)](https://travis-ci.org/klutometis/roxygen)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/roxygen2)](https://cran.r-project.org/package=roxygen2)
+[![Coverage status](https://codecov.io/gh/klutometis/roxygen/branch/master/graph/badge.svg)](https://codecov.io/github/klutometis/roxygen?branch=master)
+> all' hileth', Hephaiste; didou d'areten te kai olbon.*
+> --Homer, 7th century BCE
 
 %package lib
 Summary: lib components for the R-roxygen2 package.
@@ -59,10 +63,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569294488
+export SOURCE_DATE_EPOCH=1571896286
 
 %install
-export SOURCE_DATE_EPOCH=1569294488
+export SOURCE_DATE_EPOCH=1571896286
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
