@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 7.1.0
-Release  : 82
+Release  : 83
 URL      : https://cran.r-project.org/src/contrib/roxygen2_7.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_7.1.0.tar.gz
 Summary  : In-Line Documentation for R
@@ -29,7 +29,6 @@ BuildRequires : R-Rcpp
 BuildRequires : R-brew
 BuildRequires : R-commonmark
 BuildRequires : R-desc
-BuildRequires : R-devtools
 BuildRequires : R-digest
 BuildRequires : R-knitr
 BuildRequires : R-markdown
@@ -42,12 +41,10 @@ BuildRequires : R-xml2
 BuildRequires : buildreq-R
 
 %description
-# roxygen2 <img src="man/figures/logo.png" align="right" />
-<!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/roxygen2)](https://CRAN.R-project.org/package=roxygen2)
-[![R build status](https://github.com/r-lib/roxygen2/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/roxygen2/actions)
-[![Codecov test coverage](https://codecov.io/gh/r-lib/roxygen2/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/roxygen2?branch=master)
-<!-- badges: end -->
+and collation field using specially formatted comments. Writing
+    documentation in-line with code makes it easier to keep your
+    documentation up-to-date as your requirements change. 'Roxygen2' is
+    inspired by the 'Doxygen' system for C++.
 
 %package lib
 Summary: lib components for the R-roxygen2 package.
@@ -59,21 +56,22 @@ lib components for the R-roxygen2 package.
 
 %prep
 %setup -q -c -n roxygen2
+cd %{_builddir}/roxygen2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583972953
+export SOURCE_DATE_EPOCH=1589403712
 
 %install
-export SOURCE_DATE_EPOCH=1583972953
+export SOURCE_DATE_EPOCH=1589403712
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
