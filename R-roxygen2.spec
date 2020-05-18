@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 7.1.0
-Release  : 83
+Release  : 84
 URL      : https://cran.r-project.org/src/contrib/roxygen2_7.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_7.1.0.tar.gz
 Summary  : In-Line Documentation for R
@@ -63,10 +63,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1589403712
+export SOURCE_DATE_EPOCH=1589769861
 
 %install
-export SOURCE_DATE_EPOCH=1589403712
+export SOURCE_DATE_EPOCH=1589769861
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
