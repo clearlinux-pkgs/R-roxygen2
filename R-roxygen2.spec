@@ -4,7 +4,7 @@
 #
 Name     : R-roxygen2
 Version  : 7.1.1
-Release  : 90
+Release  : 91
 URL      : https://cran.r-project.org/src/contrib/roxygen2_7.1.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_7.1.1.tar.gz
 Summary  : In-Line Documentation for R
@@ -63,10 +63,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1593470174
+export SOURCE_DATE_EPOCH=1620764451
 
 %install
-export SOURCE_DATE_EPOCH=1593470174
+export SOURCE_DATE_EPOCH=1620764451
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -279,3 +279,5 @@ R CMD check --no-manual --no-examples --no-codoc roxygen2 || :
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/roxygen2/libs/roxygen2.so
+/usr/lib64/R/library/roxygen2/libs/roxygen2.so.avx2
+/usr/lib64/R/library/roxygen2/libs/roxygen2.so.avx512
