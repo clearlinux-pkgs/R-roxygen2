@@ -7,7 +7,7 @@
 #
 Name     : R-roxygen2
 Version  : 7.3.1
-Release  : 115
+Release  : 116
 URL      : https://cran.r-project.org/src/contrib/roxygen2_7.3.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/roxygen2_7.3.1.tar.gz
 Summary  : In-Line Documentation for R
